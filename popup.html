@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+  <link rel="stylesheet" href="style.css">
+  <title>Krutrim Language Tools</title>
+</head>
+
+<body class="bg-gray-100">
+  <div class="container mx-auto">
+    <div class="bg-white shadow-md rounded px-4 pt-4 pb-4 ">
+      <!-- Dynamic Heading -->
+      <div class=" header rounded flex items-center mb-4">
+        <img src="https://cloud.olakrutrim.com/MenuIcons/kru_logo.svg" class="img-fluid" alt="kru_logo">
+        <h1 class="text-2xl font-bold px-2">Krutrim Language Tools</h1>
+      </div>
+
+      <!-- Tabs -->
+      <div class="mb-4">
+        <ul class="flex border-b border-green-500">
+          <li class="-mb-px mr-1">
+            <a class="tab-link bg-white inline-block py-2 px-4 text-green-500 hover:text-green-800 font-semibold"
+              href="#" data-tab="translate">Translate</a>
+          </li>
+          <li class="-mb-px mr-1">
+            <a class="tab-link bg-white inline-block py-2 px-4 text-green-500 hover:text-green-800 font-semibold"
+              href="#" data-tab="readAloud">Read Aloud</a>
+          </li>
+          <li class="-mb-px mr-1">
+            <a class="tab-link bg-white inline-block py-2 px-4 text-green-500 hover:text-green-800 font-semibold"
+              href="#" data-tab="summarize">Summarization</a>
+          </li>
+          <li class="-mb-px mr-1">
+            <a class="tab-link bg-white inline-block py-2 px-4 text-green-500 hover:text-green-800 font-semibold"
+              href="#" data-tab="entityExtraction">Entity Extraction</a>
+          </li>
+          <li class="-mb-px mr-1">
+            <a class="tab-link bg-white inline-block py-2 px-4 text-green-500 hover:text-green-800 font-semibold"
+              href="#" data-tab="sentimentAnalysis">Sentiment Analysis</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Tab Content -->
+      <div id="tabContent">
+        <!-- Translate Tab -->
+        <div id="translate" class="tab-content px-4">
+          <h2 id="translatorTitle" class="text-xl font-semibold mb-2">English to Hindi Translator</h2>
+          <select id="languageSelect"
+            class="block w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-4 overflow-y-auto">
+            <option value="hin_Deva">Hindi</option>
+            <option value="ben_Beng">Bengali</option>
+            <option value="mal_Mlym">Malayalam</option>b
+            <option value="mar_Deva">Marathi</option>
+            <option value="tam_Taml">Tamil</option>
+            <option value="guj_Gujr">Gujarati</option>
+            <option value="tel_Telu">Telugu</option>
+            <option value="kan_Knda">Kannada</option>
+          </select>
+          <textarea id="inputText" class="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none" rows="4"
+            placeholder="Enter English text"></textarea>
+          <button id="translateButton"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">Translate</button>
+          <div id="resultContainer" class="mt-4 relative">
+            <textarea id="result"
+              class="bg-gray-100 w-full px-4 py-2 text-gray-700 border rounded-lg focus:outline-none"></textarea>
+            <button id="textToSpeech"
+              class="hidden absolute top-0 right-0 mt-2 mr-2  text-white font-bold  rounded flex-shrink-0"></button>
+          </div>
+        </div>
+
+        <!-- Read Aloud Tab -->
+        <div id="readAloud" class="tab-content hidden px-4">
+          <h2 class="text-xl font-semibold mb-2">Read Aloud</h2>
+          <textarea id="readAloudText" class="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none"
+            rows="4" placeholder="Enter text to read aloud"></textarea>
+          <button id="readAloudButton"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">Read Aloud</button>
+        </div>
+
+        <!-- Summarization Tab -->
+        <div id="summarize" class="tab-content hidden px-4">
+          <h2 class="text-xl font-semibold mb-2">Select language</h2>
+          <select id="summarizeLanguageSelect"
+            class="block w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-4">
+            <option value="eng">English</option>
+            <option value="hin">Hindi</option>
+            <option value="ben">Bengali</option>
+            <option value="mal">Malayalam</option>
+            <option value="mar">Marathi</option>
+            <option value="tam">Tamil</option>
+            <option value="guj">Gujarati</option>
+            <option value="tel">Telugu</option>
+            <option value="kan">Kannada</option>
+            <option value="pan">Panjabi</option>
+          </select>
+          <textarea id="summarizeText" class="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none"
+            rows="4" placeholder="Enter text to summarize"></textarea>
+          <button id="summarizeButton"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">Summarize</button>
+          <textarea id="summaryResult"
+            class="bg-gray-100 w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none mt-4"></textarea>
+        </div>
+
+        <!-- Entity Extraction Tab -->
+        <div id="entityExtraction" class="tab-content hidden px-4">
+          <div class="flex">
+            <div class="multi-select-container flex-1 w-64">
+              <!-- <h2 class="text-xl font-semibold mb-2">Parameter list</h2>
+              <select id="entityExtractionSelect"
+                class="block bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-4">
+                <option value="pii">Personal Identifiable Information(PII)</option>
+                <option value="ner">Named Entity Recognition (NER)</option>
+                <option value="keywords">keywords</option>
+                <option value="profanity">profanity</option>
+              </select> -->
+
+              <h2 class="text-xl font-semibold mb-2">Parameter list</h2>
+              <div class="custom-select-container">
+                <div id="multiSelect"
+                  class="custom-select-input block w-full bg-gray-200 border border-gray-200 text-gray-700 px-4 py-2 mb-2 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                  <span class="text-gray-500">Select parameters</span>
+                </div>
+                <div id="multiSelectOptions"
+                  class="custom-select-options hidden bg-white border border-gray-200 mt-1 rounded-md shadow-lg"></div>
+
+              </div>
+            </div>
+            <div class="flex-1 w-32 ml-4">
+              <h2 class="text-xl font-semibold mb-2">Select language</h2>
+              <select id="entitytLanguageSelect"
+                class="block  bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-4">
+                <option value="eng">English</option>
+                <option value="hin">Hindi</option>
+                <option value="ben">Bengali</option>
+                <option value="mal">Malayalam</option>
+                <option value="mar">Marathi</option>
+                <option value="tam">Tamil</option>
+                <option value="guj">Gujarati</option>
+                <option value="tel">Telugu</option>
+                <option value="kan">Kannada</option>
+                <option value="pan">Panjabi</option>
+              </select>
+            </div>
+          </div>
+          <textarea id="entityText" class="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none" rows="4"
+            placeholder="Enter text for entity extraction"></textarea>
+          <button id="extractEntitiesButton"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">Extract Entities</button>
+          <textarea id="entityResult" class="w-full mt-4 bg-gray-100 p-4 rounded"></textarea>
+        </div>
+
+        <!-- Sentiment Analysis Tab -->
+        <div id="sentimentAnalysis" class="tab-content hidden px-4">
+          <h2 class="text-xl font-semibold mb-2">Select language</h2>
+          <select id="sentimentLanguageSelect"
+            class="block w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-4">
+            <option value="eng">English</option>
+            <option value="hin">Hindi</option>
+            <option value="ben">Bengali</option>
+            <option value="mal">Malayalam</option>
+            <option value="mar">Marathi</option>
+            <option value="tam">Tamil</option>
+            <option value="guj">Gujarati</option>
+            <option value="tel">Telugu</option>
+            <option value="kan">Kannada</option>
+            <option value="pan">Panjabi</option>
+          </select>
+          <textarea id="sentimentText" class="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none"
+            rows="4" placeholder="Enter text for sentiment analysis"></textarea>
+          <button id="analyzeSentimentButton"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">Analyze Sentiment</button>
+          <div id="sentimentResult" class="mt-4 bg-gray-100 p-4 rounded"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="translate.js"></script>
+  <script src="script.js"></script>
+  <script src="summarize.js"></script>
+  <script src="sentiment.js"></script>
+  <script src="entities.js"></script>
+</body>
+
+</html>
